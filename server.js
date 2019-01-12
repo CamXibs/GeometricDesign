@@ -81,7 +81,7 @@ wss.on("connection" , function connection(ws) {
 		} 
 	}
 	
-	inf("功能:d c‖p‖s ");
+	inf("功能:d c‖p‖s\n请先在游戏中使用命令方块固定好雪球.");
 	ws.on("message" , function coming(message) {
 		//console.log('received: %s', message); 
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
