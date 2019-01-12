@@ -49,19 +49,19 @@ wss.on("connection" , function connection(ws) {
 	
 	function drawLine(pstart, pend,z){
     var slope; //斜率
-    var noSlope = false; //是否有斜率
+    var noSlope = false;
     var hdist = pend[0] - pstart[0];
     var vdist = pend[1] - pstart[1];
     if(hdist != 0){
-        slope =  Math.abs(vdist/hdist);  //计算斜率
+        slope =  Math.abs(vdist/hdist);
     }else{
-        noSlope = true; //当hdist=0时，直线没有斜率
+        noSlope = true;
     }
-    var diagonal = Math.sqrt(Math.pow(hdist,2) + Math.pow(vdist,2)); //斜边长度
-    var pn = parseInt(diagonal/1); //计算两点之间的点的数量
-    if(pn < 3){pn=pn*3+1}; //如果点的数量小于3，则加大点数；为什么+1呢，是保证pn=0时至少有一个点
-    var vgap = Math.abs(vdist)/pn; //相邻两点间的垂直距离
-    var hgap = Math.abs(hdist)/pn; //相邻两点间的水平距离
+    var diagonal = Math.sqrt(Math.pow(hdist,2) + Math.pow(vdist,2));
+    var pn = parseInt(diagonal/1); 
+    if(pn < 3){pn=pn*3+1}; 
+    var vgap = Math.abs(vdist)/pn; 
+    var hgap = Math.abs(hdist)/pn; 
     for(var i = 0; i< pn ; i++){
         drawpoint((hgap*i*(pend[0]<pstart[0]?-1:1)*(noSlope?0:1)+pstart[0]),(vgap*i*(pend[1]<pstart[1]?-1:1)+pstart[1]),z);
     }
@@ -81,7 +81,7 @@ wss.on("connection" , function connection(ws) {
 		} 
 	}
 	
-	inf("功能:d c‖p‖s\n请先在游戏中使用命令方块固定好雪球.");
+	inf("不完全作品\n功能:*dcube [边数]    n棱柱\n*cl     清屏\n*dp [边数]     n边形\n*ds [角数]     n角星\n请先在游戏中使用命令方块固定好雪球.");
 	ws.on("message" , function coming(message) {
 		//console.log('received: %s', message); 
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
